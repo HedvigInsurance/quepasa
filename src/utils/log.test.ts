@@ -9,7 +9,7 @@ it('Matches snapshot for track', () => {
   const debugLogAnalytics = wrapAnalyticsWithDebugLogging(makeMockAnalytics())
   debugLogAnalytics.track('foo')
   expect(spy.mock.calls[0]).toMatchSnapshot()
-  jest.clearAllMocks()
+  spy.mockClear()
 })
 
 it('Matches snapshot for identify', () => {
@@ -18,5 +18,5 @@ it('Matches snapshot for identify', () => {
   const debugLogAnalytics = wrapAnalyticsWithDebugLogging(makeMockAnalytics())
   debugLogAnalytics.identify('1')
   expect(spy.mock.calls[0]).toMatchSnapshot()
-  jest.clearAllMocks()
+  spy.mockClear()
 })
