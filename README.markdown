@@ -27,7 +27,7 @@ Setup the trackers:
 ```jsx
   <TrackAction event={{ name: 'some-event' }}>
     {({track}) => <button onClick={() => track()} />}
-  </TracAction>
+  </TrackAction>
 ```
 
 `<Identify />`:
@@ -51,6 +51,6 @@ If a function is provided, the function will be called to construct the event wh
 
 Provides a function `track` as a render prop, which you may then call to perform the desired track
 
-- `<Identify identity={Identity | IdentityCreator} />
+- `<Identify identity={Identity | IdentityCreator} />`
 
 Sets the identity for the current user when mounted.
