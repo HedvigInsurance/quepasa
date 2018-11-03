@@ -1,21 +1,13 @@
 import * as React from 'react'
 import { Mount } from 'react-lifecycle-components'
-import { SegmentAnalyticsJs } from './interfaces'
+import { Event, EventCreator, SegmentAnalyticsJs } from '../interfaces'
 
-interface Event {
-  name: string
-  properties?: { [key: string]: any }
-  options?: { [key: string]: any }
-}
-
-type EventCreator = () => Event
-
-export interface TrackerProps {
+export interface TrackProps {
   event: Event | EventCreator
 }
 
 export const makeTrack = (analytics: SegmentAnalyticsJs) => {
-  const Track: React.SFC<TrackerProps> = ({ event, children }) => (
+  const Track: React.SFC<TrackProps> = ({ event, children }) => (
     <Mount
       on={() => {
         if (typeof event === 'function') {

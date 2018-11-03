@@ -32,3 +32,11 @@ Creates trackers with the provided `SegmentAnalyticsJs`-instance.
 
 Tracks the provided event when mounted. You can provide event as a literal object or a function.
 If a function is provided, the function will be called to construct the event when tracking should occur.
+
+- `<TrackAction event={Event | EventCreator}>{(track: (event) => void) => children}</TrackAction>`
+
+Provides a function `track` as a render prop, which you may then call to perform the desired track
+
+- `<Identify identity={Identity | IdentityCreator} />
+
+Sets the identity for the current user when mounted.
