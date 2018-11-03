@@ -17,7 +17,7 @@ export const wrapAnalyticsWithDebugLogging = (
     analytics.track(...args)
   }
   const identify: SegmentAnalyticsJs['identify'] = (...args) => {
-    console.log('[IDENTIFY]', blueBold, {
+    console.log('%c[IDENTIFY]', blueBold, {
       userId: args[0],
       traits: args[1],
       options: args[2],
