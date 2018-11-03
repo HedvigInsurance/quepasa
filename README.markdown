@@ -1,4 +1,4 @@
-# quepasa - declarative tracking with segment
+# quepasa - Declarative tracking with Segment 📊
 
 ## Install
 
