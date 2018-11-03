@@ -1,4 +1,4 @@
-# quepasa - declarative tracking
+# quepasa - declarative tracking with segment
 
 ## Install
 
@@ -13,13 +13,27 @@ Setup the trackers:
 ```js
   const segment = window.analytics // If using analytics.js on web
   const segment = require('react-native-segment-analytics-io') // If using Segment on react-native
-  const { Track } = setupTrackers(segment)
+  const { Track, TrackAction, Identify } = setupTrackers(() => segment)
 ```
 
 `<Track />`:
 
 ```jsx
   <Track event={{ name: 'some-kind-of-event' }} />
+```
+
+`<TrackAction />`:
+
+```jsx
+  <TrackAction event={{ name: 'some-event' }}>
+    {({track}) => <button onClick={() => track()} />}
+  </TracAction>
+```
+
+`<Identify />`:
+
+```jsx
+  <Identify identity={{userId: '1'}} />
 ```
 
 ## API
