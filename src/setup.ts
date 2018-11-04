@@ -8,7 +8,7 @@ interface QuepasaOptions {
   debug: boolean | undefined
 }
 
-export const setupTrackers = (
+export const setupTrackers = <TEventNames extends string = string>(
   analyticsSelector: () => SegmentAnalyticsJs,
   options?: QuepasaOptions,
 ) => {
@@ -23,8 +23,8 @@ export const setupTrackers = (
   }
 
   return {
-    Track: makeTrack(analytics),
-    TrackAction: makeTrackAction(analytics),
+    Track: makeTrack<TEventNames>(analytics),
+    TrackAction: makeTrackAction<TEventNames>(analytics),
     Identify: makeIdentify(analytics),
   }
 }

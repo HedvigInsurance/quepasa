@@ -2,12 +2,14 @@ import * as React from 'react'
 import { Mount } from 'react-lifecycle-components'
 import { Event, EventCreator, SegmentAnalyticsJs } from '../interfaces'
 
-export interface TrackProps {
-  event: Event | EventCreator
+export interface TrackProps<TNames extends string> {
+  event: Event<TNames> | EventCreator<TNames>
 }
 
-export const makeTrack = (analytics: SegmentAnalyticsJs) => {
-  const Track: React.SFC<TrackProps> = ({ event, children }) => (
+export const makeTrack = <TNames extends string>(
+  analytics: SegmentAnalyticsJs,
+) => {
+  const Track: React.SFC<TrackProps<TNames>> = ({ event, children }) => (
     <Mount
       on={() => {
         if (typeof event === 'function') {

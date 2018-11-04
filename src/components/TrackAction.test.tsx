@@ -1,14 +1,14 @@
 import { mount } from 'enzyme'
 import * as React from 'react'
 import { Mount } from 'react-lifecycle-components'
-import { setup } from '../utils/test'
+import { setup, TestEvents } from '../utils/test'
 
 it('Tracks when render prop function is called', () => {
   const {
     mockAnalytics,
     trackers: { TrackAction },
   } = setup()
-  const event = { name: 'something' }
+  const event = { name: TestEvents.SomethingElse }
 
   mount(
     <TrackAction event={event}>
@@ -28,7 +28,7 @@ it('Tracks when render prop function is called with an event creator', () => {
     mockAnalytics,
     trackers: { TrackAction },
   } = setup()
-  const event = { name: 'something' }
+  const event = { name: TestEvents.SomethingElse }
   const eventCreator = () => event
 
   mount(

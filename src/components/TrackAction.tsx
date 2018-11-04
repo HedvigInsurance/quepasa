@@ -1,13 +1,18 @@
 import * as React from 'react'
 import { Event, EventCreator, SegmentAnalyticsJs } from '../interfaces'
 
-export interface TrackActionProps {
-  event: Event | EventCreator
+export interface TrackActionProps<TEventNames extends string> {
+  event: Event<TEventNames> | EventCreator<TEventNames>
   children: (props: { track: () => void }) => React.ReactNode
 }
 
-export const makeTrackAction = (analytics: SegmentAnalyticsJs) => {
-  const TrackAction: React.SFC<TrackActionProps> = ({ event, children }) => (
+export const makeTrackAction = <TEventNames extends string>(
+  analytics: SegmentAnalyticsJs,
+) => {
+  const TrackAction: React.SFC<TrackActionProps<TEventNames>> = ({
+    event,
+    children,
+  }) => (
     <>
       {children({
         track: () => {
