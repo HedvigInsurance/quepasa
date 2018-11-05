@@ -5,18 +5,16 @@ import { SegmentAnalyticsJs } from './interfaces'
 import { wrapAnalyticsWithDebugLogging } from './utils/log'
 
 interface QuepasaOptions {
-  debug: boolean | undefined
+  debug?: boolean
 }
 
 export const setupTrackers = (
   analyticsSelector: () => SegmentAnalyticsJs,
-  options?: QuepasaOptions,
+  options: QuepasaOptions = {},
 ) => {
   let analytics = analyticsSelector()
-  if (options) {
-    if (options.debug) {
-      analytics = wrapAnalyticsWithDebugLogging(analytics)
-    }
+  if (options.debug) {
+    analytics = wrapAnalyticsWithDebugLogging(analytics)
   }
   if (!analytics) {
     throw new Error('Must provide an analytics selector')
