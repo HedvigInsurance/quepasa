@@ -2,9 +2,20 @@ import { makeIdentify } from './components/Identify'
 import { makeTrack } from './components/Track'
 import { makeTrackAction } from './components/TrackAction'
 import { SegmentAnalyticsJs } from './interfaces'
+import { wrapAnalyticsWithDebugLogging } from './utils/log'
 
-export const setupTrackers = (analyticsSelector: () => SegmentAnalyticsJs) => {
-  const analytics = analyticsSelector()
+interface QuepasaOptions {
+  debug?: boolean
+}
+
+export const setupTrackers = (
+  analyticsSelector: () => SegmentAnalyticsJs,
+  options: QuepasaOptions = {},
+) => {
+  let analytics = analyticsSelector()
+  if (options.debug) {
+    analytics = wrapAnalyticsWithDebugLogging(analytics)
+  }
   if (!analytics) {
     throw new Error('Must provide an analytics selector')
   }
