@@ -1,4 +1,5 @@
 import { makeIdentify } from './components/Identify'
+import { makeIdentifyAction } from './components/IdentifyAction'
 import { makeTrack } from './components/Track'
 import { makeTrackAction } from './components/TrackAction'
 import { SegmentAnalyticsJs } from './interfaces'
@@ -24,5 +25,6 @@ export const setupTrackers = <TEventNames extends string = string>(
     Track: makeTrack<TEventNames>(analytics),
     TrackAction: makeTrackAction<TEventNames>(analytics),
     Identify: makeIdentify(analytics),
+    IdentifyAction: makeIdentifyAction(analytics),
   }
 }
