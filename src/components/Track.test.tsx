@@ -7,8 +7,11 @@ it('tracks when mounted', () => {
     mockAnalytics,
     trackers: { Track },
   } = setup()
+
   const event = { name: TestEvents.Something }
   mount(<Track event={event} />)
+
+  expect(mockAnalytics.track).toHaveBeenCalledTimes(1)
   expect(mockAnalytics.track).toHaveBeenCalledWith(
     event.name,
     undefined,
@@ -26,6 +29,7 @@ it('tracks when mounted with an event creator', () => {
   const eventCreator = () => event
   mount(<Track event={eventCreator} />)
 
+  expect(mockAnalytics.track).toHaveBeenCalledTimes(1)
   expect(mockAnalytics.track).toHaveBeenCalledWith(
     event.name,
     undefined,
