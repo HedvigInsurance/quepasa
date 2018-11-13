@@ -16,6 +16,7 @@ it('Tracks when render prop function is called', () => {
     </TrackAction>,
   )
 
+  expect(mockAnalytics.track).toHaveBeenCalledTimes(1)
   expect(mockAnalytics.track).toHaveBeenCalledWith(
     event.name,
     undefined,
@@ -37,6 +38,7 @@ it('Tracks when render prop function is called with an event creator', () => {
     </TrackAction>,
   )
 
+  expect(mockAnalytics.track).toHaveBeenCalledTimes(1)
   expect(mockAnalytics.track).toHaveBeenCalledWith(
     event.name,
     undefined,
