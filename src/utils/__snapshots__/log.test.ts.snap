@@ -4,22 +4,12 @@ exports[`Matches snapshot for identify 1`] = `
 Array [
   "%c[IDENTIFY]",
   "color: #0000ff; font-weight: bold",
-  Object {
-    "options": undefined,
-    "traits": undefined,
-    "userId": "1",
-  },
 ]
 `;
 
 exports[`Matches snapshot for track 1`] = `
 Array [
-  "%c[TRACK]",
-  "color: #ff0000; font-weight: bold",
-  Object {
-    "event": "foo",
-    "options": undefined,
-    "properties": undefined,
-  },
+  "event: %cfoo",
+  "color: #000000; font-weight: bold",
 ]
 `;

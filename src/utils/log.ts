@@ -4,24 +4,24 @@ import { SegmentAnalyticsJs } from '../interfaces'
 
 const redBold = 'color: #ff0000; font-weight: bold'
 const blueBold = 'color: #0000ff; font-weight: bold'
+const blackBold = 'color: #000000; font-weight: bold'
 
 export const wrapAnalyticsWithDebugLogging = (
   analytics: SegmentAnalyticsJs,
 ): SegmentAnalyticsJs => {
   const track: SegmentAnalyticsJs['track'] = (...args) => {
-    console.log('%c[TRACK]', redBold, {
-      event: args[0],
-      properties: args[1],
-      options: args[2],
-    })
+    console.group('%c[TRACK]', redBold)
+    console.log(`event: %c${args[0]}`, blackBold)
+    console.log('properties: ', args[1])
+    console.log('options: ', args[2])
+    console.groupEnd()
     analytics.track(...args)
   }
   const identify: SegmentAnalyticsJs['identify'] = (...args) => {
-    console.log('%c[IDENTIFY]', blueBold, {
-      userId: args[0],
-      traits: args[1],
-      options: args[2],
-    })
+    console.log('%c[IDENTIFY]', blueBold)
+    console.log(`userId: %c${args[0]}`, blackBold)
+    console.log('traits: ', args[1])
+    console.log('options: ', args[2])
     analytics.identify(...args)
   }
   return {
