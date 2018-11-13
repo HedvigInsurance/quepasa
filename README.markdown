@@ -36,6 +36,14 @@ Setup the trackers:
   <Identify identity={{userId: '1'}} />
 ```
 
+`<IdentifyAction />`
+
+```jsx
+  <IdentifyAction identity={{ userId: '1' }}>
+    {({identify}) => <button onClick={() => identify()} />}
+  </IdentifyAction >
+```
+
 ## API
 
 - `setupTrackers<TEvents>(segment: SegmentAnalyticsJs): { Track, TrackAction, Identify }`
@@ -55,6 +63,10 @@ Provides a function `track` as a render prop, which you may then call to perform
 - `<Identify identity={Identity | IdentityCreator} />`
 
 Sets the identity for the current user when mounted.
+
+- `<IdentifyAction identity={Identity | IdentityCreator}></IdentifyAction>`
+
+Provides a function `identify` as a render prop, which you may then call to perform the desired identify
 
 - SemanticEvents
 
