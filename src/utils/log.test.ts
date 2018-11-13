@@ -4,19 +4,29 @@ import { makeMockAnalytics } from './test'
 // tslint:disable no-console
 
 it('Matches snapshot for track', () => {
-  const spy = jest.spyOn(console, 'log')
+  const groupSpy = jest.spyOn(console, 'group')
+  const logSpy = jest.spyOn(console, 'log')
 
   const debugLogAnalytics = wrapAnalyticsWithDebugLogging(makeMockAnalytics())
   debugLogAnalytics.track('foo')
-  expect(spy.mock.calls[0]).toMatchSnapshot()
-  spy.mockClear()
+  expect(groupSpy.mock.calls[0]).toMatchSnapshot()
+  expect(logSpy.mock.calls[0]).toMatchSnapshot()
+  expect(logSpy.mock.calls[1]).toMatchSnapshot()
+  expect(logSpy.mock.calls[2]).toMatchSnapshot()
+  groupSpy.mockClear()
+  logSpy.mockClear()
 })
 
 it('Matches snapshot for identify', () => {
-  const spy = jest.spyOn(console, 'log')
+  const groupSpy = jest.spyOn(console, 'group')
+  const logSpy = jest.spyOn(console, 'log')
 
   const debugLogAnalytics = wrapAnalyticsWithDebugLogging(makeMockAnalytics())
   debugLogAnalytics.identify('1')
-  expect(spy.mock.calls[0]).toMatchSnapshot()
-  spy.mockClear()
+  expect(groupSpy.mock.calls[0]).toMatchSnapshot()
+  expect(logSpy.mock.calls[0]).toMatchSnapshot()
+  expect(logSpy.mock.calls[1]).toMatchSnapshot()
+  expect(logSpy.mock.calls[2]).toMatchSnapshot()
+  groupSpy.mockClear()
+  logSpy.mockClear()
 })
