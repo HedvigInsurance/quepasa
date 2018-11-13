@@ -19,40 +19,17 @@ export const makeIdentifyAction = (analytics: SegmentAnalyticsJs) => {
     <>
       {children({
         identify: (additionalIdentityInformation) => {
-          if (typeof identity === 'function') {
-            const unwrappedIdentity = identity()
-            if (additionalIdentityInformation) {
-              const mergedIdentity = merge(
-                unwrappedIdentity,
-                additionalIdentityInformation,
-              )
-              analytics.identify(
-                mergedIdentity.userId,
-                mergedIdentity.traits,
-                mergedIdentity.options,
-              )
-              return
-            }
-            analytics.identify(
-              unwrappedIdentity.userId,
-              unwrappedIdentity.traits,
-              unwrappedIdentity.options,
-            )
-            return
-          }
-          if (additionalIdentityInformation) {
-            const mergedIdentity = merge(
-              identity,
-              additionalIdentityInformation,
-            )
-            analytics.identify(
-              mergedIdentity.userId,
-              mergedIdentity.traits,
-              mergedIdentity.options,
-            )
-            return
-          }
-          analytics.identify(identity.userId, identity.traits, identity.options)
+          const unwrappedIdentity =
+            typeof identity === 'function' ? identity() : identity
+          const mergedIdentity = merge(
+            unwrappedIdentity,
+            additionalIdentityInformation || {},
+          )
+          analytics.identify(
+            mergedIdentity.userId,
+            mergedIdentity.traits,
+            mergedIdentity.options,
+          )
         },
       })}
     </>
