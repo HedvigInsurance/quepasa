@@ -1,6 +1,11 @@
 {
   "name": "quepasa",
   "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HedvigInsurance/quepasa.git"
+  },
   "scripts": {
     "build": "NODE_ENV=production rm -rf dist && rollup -c",
     "dev": "NODE_ENV=development rm -rf dist && rollup -c -w",
@@ -51,6 +56,5 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
-  "license": "MIT",
   "types": "dist/index.d.ts"
 }
